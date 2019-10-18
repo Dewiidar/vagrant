@@ -15,7 +15,14 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "prod" do |prod|
-
+    config.vm.box = "digital_ocean"
+    config.ssh.private_key_path = "~/.ssh/id_rsa"
+    config.vm.provider :digital_ocean do |provider|
+        provider.client_id = "YOUR CLIENT ID"
+        provider.api_key = "YOUR API KEY"
+        provider.image = "Ubuntu 12.10 x64"
+        provider.region = "New York 2"
+    end
   end
 
   config.vm.provider "virtualbox" do |vb|
